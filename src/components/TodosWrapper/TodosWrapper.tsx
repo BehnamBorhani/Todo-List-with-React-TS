@@ -30,13 +30,12 @@ const TodosWrapper = () => {
     }).then((result) => {
       if (result) {
         setTodos(todos.filter((todo) => todo.id !== id));
+        swal({
+          title: "Todo removed successfully",
+          icon: "success",
+          timer: 2000,
+        });
       }
-
-      swal({
-        title: "Todo removed successfully",
-        icon: "success",
-        timer: 2000,
-      });
     });
   };
 
