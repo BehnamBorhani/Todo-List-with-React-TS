@@ -41,7 +41,11 @@ const TodosWrapper = () => {
   };
 
   const toggleCompleted = (id: string) => {
-    //  setTodos(todos.filter((todo) => todo.id !== id));
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
   };
 
   return (

@@ -13,6 +13,7 @@ const Todo = ({ todo, removeTodo, toggleCompleted }: TodoProps) => {
   return (
     <div className="Todo">
       <p
+        onClick={() => toggleCompleted(todo.id)}
         className={todo.isCompleted ? "completed" : ""} // or completed className
       >
         {todo.title}
