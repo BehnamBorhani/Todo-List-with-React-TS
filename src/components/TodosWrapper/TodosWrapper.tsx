@@ -21,6 +21,14 @@ const TodosWrapper = () => {
     setTodos([...todos, newTodo]);
   };
 
+  const removeTodo = (id: string) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const toggleCompleted = (id: string) => {
+   //  setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="TodoWrapper">
       <h1>Todo List ❤️ </h1>
@@ -29,7 +37,12 @@ const TodosWrapper = () => {
 
       {/* display todos */}
       {todos.map((todo) => (
-        <Todo {...todo} key={todo.id} />
+        <Todo
+          todo={todo}
+          removeTodo={removeTodo}
+          toggleCompleted={toggleCompleted}
+          key={todo.id}
+        />
       ))}
     </div>
   );

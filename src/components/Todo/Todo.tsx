@@ -1,15 +1,25 @@
 import React from "react";
 import { Todo as TodoTypes } from "./Todo.types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Todo = ({ id, title, isCompleted }: TodoTypes) => {
+type TodoProps = {
+  todo: TodoTypes;
+  removeTodo: (id: string) => void;
+  toggleCompleted: (id: string) => void;
+};
+
+const Todo = ({ todo, removeTodo, toggleCompleted }: TodoProps) => {
   return (
     <div className="Todo">
       <p
-        className={isCompleted ? "completed" : ""} // or completed className
+        className={todo.isCompleted ? "completed" : ""} // or completed className
       >
-        {title}
+        {todo.title}
       </p>
-      <div>{/* <FontAwesomeIcon icon={faTrash} /> */}</div>
+      <div>
+        <FontAwesomeIcon icon={faTrash} onClick={() => removeTodo(todo.id)} />
+      </div>
     </div>
   );
 };
