@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Todo from "../Todo/Todo";
 import TodoForm from "../TodoForm/TodoForm";
 import { Todo as TodoType } from "../Todo/Todo.types";
+import swal from "sweetalert";
 
 const TodosWrapper = () => {
   const [todos, setTodos] = useState<TodoType[]>([
@@ -22,11 +23,25 @@ const TodosWrapper = () => {
   };
 
   const removeTodo = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    swal({
+      title: "Are you sure you want to remove this todo?",
+      icon: "warning",
+      buttons: ["No", "Yes"],
+    }).then((result) => {
+      if (result) {
+        setTodos(todos.filter((todo) => todo.id !== id));
+      }
+
+      swal({
+        title: "Todo removed successfully",
+        icon: "success",
+        timer: 2000,
+      });
+    });
   };
 
   const toggleCompleted = (id: string) => {
-   //  setTodos(todos.filter((todo) => todo.id !== id));
+    //  setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   return (
